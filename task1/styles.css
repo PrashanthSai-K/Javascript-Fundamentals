@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins";
+}
+
+body{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background-color: rgb(240, 240, 240);
+}
+
+.container{
+    background-color: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    min-height: 20rem;
+    width: 50%;
+}
+
+.task-input{
+    width: 70%;
+    border-radius: 0.5rem;
+    text-indent: 5px;
+    height: 2rem;
+}
+
+.add-button{
+    background-color: rgb(113, 178, 240);
+    border: 0;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: white;
+}
+
+.edit-button{
+    background-color: rgb(47, 216, 145);
+    border: 0;
+    padding: 0.3rem 1rem;
+    border-radius: 0.5rem;
+    color: white;
+}
+
+.delete-button{
+    background-color: rgb(226, 58, 52);
+    border: 0;
+    padding: 0.3rem 1rem;
+    border-radius: 0.5rem;
+    color: white;
+}
+
+ul {
+    padding: 1rem 1rem 1rem 0rem ;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+li > div {
+    padding-right: 3rem;
+    display: flex;
+    gap: 1rem;
+}
+
+ul > .checked {
+    text-decoration:line-through;
+}
+
+@media (max-width:768px) {
+    .container{
+        width: 80%;
+    }
+    .task-input{
+        width: 70%;
+    }
+}
