@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins";
+}
+
+h3{
+    text-align: center;
+    padding: 1rem;
+    background-color: rgb(230, 230, 230);
+}
+
+.container {
+    position: relative;
+    display: grid;
+    place-items: start;
+    min-height: 90vh;
+    background-color: rgb(230, 230, 230);
+}
+
+.images-container{
+    position: relative;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    gap: 1rem;
+    width: 90%;
+}
+
+.images-container > img {
+    width: 15rem;
+    height: 15rem;
+    object-fit:cover;
+    border-radius: 1rem;
+    margin: 0.5rem;
+}
+
+.image-modal{
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    display: flex;
+    place-items: center;
+    width: 99.8%;
+    height: 99.7%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: rem;
+    transition: all 1s ease;
+    overflow: hidden;
+}
+
+.image-modal > img {
+    width: 100%;
+    height: 90%;
+    object-fit: contain;
+    border-radius: 1rem;
+}
+
+.close-button{
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    color: white;
+    padding: 0rem 0.35rem;
+    border-radius: 100%;
+    font-size: large;
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+
+@media (max-width: 768px) {
+    .container{
+        place-items: center;
+        padding: 1rem;
+    }
+    .images-container{
+        grid-template-columns: auto auto;
+    }
+    .images-container > img {
+        width: 100%;
+        height: 100%;
+    }
+}
