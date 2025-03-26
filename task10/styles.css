@@ -1,0 +1,368 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins";
+}
+
+body {
+    background-color: rgb(240, 241, 241);
+}
+
+.main{
+    background-color: rgb(240, 241, 241);
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
+}
+
+nav{
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+}
+nav > h3 {
+    padding-left: 2rem;
+    color: rgb(22, 196, 196);
+    font-size: 1.5rem;
+}
+
+nav > ul {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-right: 2rem;
+}
+
+.message {
+    position: absolute;
+    display: none;
+    top: 4rem;
+    right: 5rem;
+    width: 10rem;
+    background-color: rgba(54, 248, 128, 0.5);
+    border: 1px solid rgb(7, 209, 75);
+    text-align: center;
+    border-radius: 0.5rem;
+    padding: 0.2rem 0.5rem;
+}
+
+.page-header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-header > .search{
+    height: 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgb(163, 163, 163);
+    width: 20rem;
+    margin: 1rem;
+    text-indent: 1rem;
+}
+
+.page-title{
+    text-align: start;
+    padding: 1rem 2rem;
+    color: rgb(22, 196, 196);
+}
+
+.list{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    place-content: center;
+    gap: 2rem;
+    background-color: rgb(240, 241, 241);
+
+}
+
+.list > .card{
+    width: 20rem;
+    height: 15rem;
+    background-color: white;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+}
+
+.list > .card > img{
+    width: 48%;
+    height: 98%;
+    object-fit: contain;
+    border-radius: 0.5rem;
+}
+
+.list > .card > .details {
+    width: 50%;
+    height: 100%;
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2rem;
+    padding-left: 1rem;
+}
+
+.list > .card > .details > .name {
+    font-weight: 600;
+    font-size: larger;
+}
+
+.list > .card > .details > .author {
+    color: rgb(181, 181, 182);
+    font-size: x-small;
+}
+
+.list > .card > .details > .price {
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.list > .card > .details > .type {
+    color: rgb(181, 181, 182);
+    font-size: small;
+}
+
+.list > .card > .details > .available {
+    color: red;
+    font-weight: 600;
+    font-size: x-small;
+}
+
+.list > .card > .details > .add-cart{
+    width: fit-content;
+    padding: 0.25rem 1rem;
+    background-color: rgb(49, 241, 129);
+    border: 0;
+    border-radius: 0.5rem;
+    color: white;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+}
+
+.cart{
+    background-color: rgb(240, 241, 241);
+    width: 100%;
+    opacity: 0;
+    height: 0;
+}
+
+.cart-notify{
+    color: black;
+    background-color: red;
+    font-size: x-small;
+    color: white;
+    border-radius: 100%;
+    padding: 0rem 0.3rem;
+}
+
+.cart{
+    display: grid;
+    grid-template-columns: auto;
+    place-content: center;
+    gap: 2rem;
+}
+
+.cart > .checkout-card {
+    width: 45rem;
+    height: 5rem;
+    background-color: white;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.cart > .checkout-card > .price-container {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.cart > .checkout-card > .price-container > .total{
+    font-weight: 600;
+}
+
+.cart > .checkout-card > .price-container > .price {
+    color: rgb(71, 71, 71);
+    font-size: medium;
+    padding-left: 0.5rem;
+}
+
+.cart > .checkout-card > .checkout-button {
+    padding: 0.25rem 1rem;
+    background-color: rgb(255, 157, 30);
+    color: white;
+    border-radius: 0.5rem;
+    border: 0;
+}
+
+.cart > .checkout-card > .checkout-button:hover {
+    background-color: rgb(250, 151, 21);
+}
+
+.cart > .card {
+    width: 45rem;
+    height: 5rem;
+    background-color: white;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.cart > .card > img{
+    width: 20%;
+    height: 98%;
+    object-fit: contain;
+    border-radius: 0.5rem;
+}
+
+.cart > .card > .details {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 0.5rem;
+}
+
+.cart > .card > .details > .name {
+    font-weight: 600;
+    font-size: large;
+    width: 15%;
+}
+
+.cart > .card > .details > .author {
+    color: rgb(181, 181, 182);
+    font-size: x-small;
+}
+
+.cart > .card > .details > .price {
+    font-weight: 600;
+}
+
+.cart > .card > .details > .type {
+    color: rgb(181, 181, 182);
+    font-size: small;
+}
+
+.cart > .card > .details > .available {
+    color: red;
+    font-weight: 600;
+    font-size: x-small;
+}
+
+.cart > .card > .details > .quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.cart > .card > .details > .quantity > .quantity-count {
+    font-weight: 600;
+    font-size: x-small;
+}
+
+.cart > .card > .details > .quantity > .add{
+    width: fit-content;
+    padding: 0.2rem 1rem;
+    font-size: xx-small;
+    background-color: rgb(6, 173, 48);
+    color: white;
+    border: 0;
+    border-radius: 0.5rem;
+}
+
+.cart > .card > .details > .quantity > .minus{
+    width: fit-content;
+    padding: 0.2rem 1rem;
+    font-size: xx-small;
+    background-color: rgb(250, 151, 21);
+    color: white;
+    border: 0;
+    border-radius: 0.5rem;
+}
+
+.cart > .card > .details > .remove-cart{
+    width: fit-content;
+    padding: 0.25rem 1rem;
+    background-color: rgb(250, 74, 21);
+    border: 0;
+    border-radius: 0.5rem;
+    color: white;
+    margin-right: 1rem;
+    position: absolute;
+    right: 0;
+}
+
+
+@media (max-width:768px) {
+
+    .list{
+        grid-template-columns: auto;
+    }
+
+    .cart > .checkout-card {
+        width: 20rem;
+        padding: 0 1rem;
+        
+    }
+    .cart > .checkout-card > .price-container {
+        display: block;
+    }
+
+    .cart > .checkout-card > .price-container > .total{
+        font-size: small;
+    }
+
+    .cart > .checkout-card > .price-container > .checkout-button{
+        font-size: small;
+    }
+
+    .cart > .checkout-card > .price-container > .price{
+        font-size: x-small;
+    }
+
+    .cart > .card > .details > .remove-cart{
+        bottom: 1rem;
+    }
+    .cart > .card{
+        width: 20rem;
+        height: auto;
+        padding: 1rem;
+    }
+    .cart > .card > .details > .name {
+        width: auto;
+    }
+
+    .cart > .card > .details {
+        display: flex;
+        width: 70%;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        padding: 0rem 2rem;
+    }
+}
