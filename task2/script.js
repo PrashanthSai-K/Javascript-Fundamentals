@@ -1,18 +1,18 @@
-let prevInput = ""
-let currentInput = ""
-let currentOp = ""
-
 let input = document.getElementById("display");
+let resultDisplay = document.querySelector(".result-display");
 
-//Handling the click event
+let expression = "";
+
+window.addEventListener("keydown", keyPress);
+
 function keyPress(event) {
     let key = event.key;
     if (!isNaN(key) || key === ".") {
-        appendNumber(key);
-    } else if (key === "+" || key === "-" || key === "x" || key === "/" || key === "*" || key === "%") {
-        appendOperation(key);
+        appendVal(key);
+    } else if (key === "+" || key === "-" || key === "x" || key === "/" || key === "*" || key === "%" || key === "(" || key === ")") {
+        appendVal(key);
     } else if (key == "=" || key === "Enter") {
-        calculate();
+        updateResult(event, true);
     }
     else if (key === "Escape" || key === "C") {
         clearAll();
@@ -24,84 +24,141 @@ function keyPress(event) {
     }
 }
 
-//Handling clear all
+function updateResult(e, enterPress) {
+    if (enterPress)
+        e.preventDefault();
+    try {
+        const tokens = tokenize(expression);
+        const postfix = infixToPostfix(tokens);
+        const result = calculate(postfix);
+        console.log(expression);
+
+        resultDisplay.textContent = result;
+    } catch (error) {
+        console.log(error);
+        resultDisplay.textContent = "";
+    }
+}
+
+
+function appendVal(val) {
+    expression += val;
+    input.value = expression;
+    if (isNaN(val)) {
+        updateResult();
+    }
+}
+
 function clearAll() {
-    prevInput = ""
-    currentInput = ""
-    currentOp = ""
-    input.value = ""
+    expression = "";
+    input.value = expression;
 }
 
-//Handling clear last
 function clearLast() {
-    if (currentOp == "" && currentInput == "")
-        prevInput = prevInput.slice(0, -1);
-    else if (currentInput == "")
-        currentOp = "";
-    else
-        currentInput = currentInput.slice(0, -1);
-    input.value = `${prevInput} ${currentOp} ${currentInput}`;
+    expression = expression.slice(0, -1);
+    input.value = expression;
 }
 
-//Handling clicking of numbers
-function appendNumber(number) {
-    currentInput += number
-    input.value = `${prevInput} ${currentOp} ${currentInput}`
-}
 
-//Handling clicking of operations
-function appendOperation(operation) {
-    if (currentInput == "") return;
-    if (prevInput == "")
-        prevInput = currentInput;
-    else
-        calculate();
-    currentOp = operation;
-    prevInput = currentInput;
-    currentInput = "";
-    input.value = `${prevInput} ${currentOp} ${currentInput}`;
-}
+function tokenize(expression) {
+    let tokens = [];
+    let operand = "";
+    let lastChar = null;
+    for (let i = 0; i < expression.length; i++) {
+        let char = expression[i];
+        if (!isNaN(char) || char == ".") {
+            operand += char;
+        } else if (char === "-" && (i === 0 || isNaN(lastChar))) {
+            operand += char;
+        } else {
 
-//Main caculate function
-function calculate() {
-    if (prevInput === "" || currentInput == "") return;
-
-    let op1 = parseFloat(prevInput);
-    let op2 = parseFloat(currentInput);
-    var result = 0;
-    switch (currentOp) {
-        case "+":
-            result = op1 + op2;
-            break;
-        case "-":
-            result = op1 - op2;
-            break;
-        case "x":
-            result = op1 * op2;
-            break;
-        case "*":
-            result = op1 * op2;
-            break;
-        case "%":
-            result = op1 % op2;
-            break;
-        case "/":
-            if (op2 == 0) {//Handling division by zero
-                alert("Division by zero is not allowed")
-                clearAll()
-                return
+            if (operand != "") {
+                tokens.push(parseFloat(operand));
             }
-            result = op1 / op2;
-            break;
-        default:
-            break;
+            tokens.push(char);
+            operand = "";
+        }
+        lastChar = char;
     }
 
-    currentInput = result.toString(); //Converting back to string to avoid addition instead of concatenation
-    currentOp = "";
-    prevInput = ""
-    input.value = `${currentInput}`
+    if (operand !== "") {
+        tokens.push(parseFloat(operand));
+    }
+
+    return tokens;
 }
 
-//Adding event listener to the window for key press
-window.addEventListener("keydown", keyPress);
+function infixToPostfix(tokens) {
+    let postfix = [];
+    let operator = [];
+    let precedence = { "+": 1, "-": 1, "*": 2, "/": 2, "%": 2 };
+
+    tokens.forEach((token) => {
+        if (typeof token === "number") {
+            postfix.push(token);
+        } else if (token == "(") {
+            operator.push(token);
+        } else if (token == ")") {
+            while (operator.length && operator[operator.length - 1] != "(") {
+                postfix.push(operator.pop());
+            }
+            operator.pop();
+        } else {
+            while (operator.length && precedence[operator[operator.length - 1]] >= precedence[token]) {
+                postfix.push(operator.pop());
+            }
+            operator.push(token);
+        }
+    })
+
+    while (operator.length) {
+        postfix.push(operator.pop());
+    }
+    console.log(postfix);
+
+    return postfix;
+}
+
+function calculate(postfix = []) {
+    let stack = [];
+
+    postfix.forEach((val) => {
+        if (!isNaN(val)) {
+            stack.push(val);
+        } else {
+            let b = stack.pop();
+            let a = stack.pop();
+
+            if (a === undefined || b === undefined) {
+                throw new Error("Invalid expression");
+            }
+
+            switch (val) {
+                case "+":
+                    stack.push(a + b);
+                    break;
+                case "-":
+                    stack.push(a - b);
+                    break;
+                case "*":
+                    stack.push(a * b);
+                    break;
+                case "/":
+                    if (b == 0) {
+                        alert("Cannot divide by zero");
+                        return NaN;
+                    }
+                    stack.push(a / b);
+                    break;
+                case "%":
+                    stack.push(a % b);
+                    break;
+                default:
+                    throw new Error(`Unknown operator: ${val}`);
+            }
+        }
+    });
+
+    return stack.pop();
+}
+

@@ -18,6 +18,7 @@
 
 - Number and operator buttons (0-9, +, -, ×, ÷, %)
 - Clear (`C`), equals (`=`) and backspace buttons
+- Included `( )` functionality with operator precedence using Infix to Postfix conversion
 - Perform basic operations: addition, subtraction, multiplication, division and modulus
 - Dynamic display of input and results
 - Responsive layout for both desktop and mobile screens

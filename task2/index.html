@@ -15,32 +15,35 @@
 
 <body>
     <div class="calculator-container">
-        <input type="text" class="display" id="display" autocomplete="off" readonly>
+        <div class="display">
+            <input type="text" class="" id="display" autocomplete="off" readonly>
+            <div class="result-display"></div>
+        </div>
         <div class="claculator">
             <button class="button" onclick="clearAll()">AC</button>
-            <button class="button" onclick="appendOperation('%')">%</button>
-            <button class="button" onclick="appendOperation('/')">/</button>
-            <button class="button" onclick="clearLast()">&#9003;</button>
-            <button class="button" onclick="appendNumber(1)">1</button>
-            <button class="button" onclick="appendNumber(2)">2</button>
-            <button class="button" onclick="appendNumber(3)">3</button>
-            <button class="button" onclick="appendOperation('x')">x</button>
-            <button class="button" onclick="appendNumber(4)">4</button>
-            <button class="button" onclick="appendNumber(5)">5</button>
-            <button class="button" onclick="appendNumber(6)">6</button>
-            <button class="button" onclick="appendOperation('+')">+</button>
-            <button class="button" onclick="appendNumber(7)">7</button>
-            <button class="button" onclick="appendNumber(8)">8</button>
-            <button class="button" onclick="appendNumber(9)">9</button>
-            <button class="button" onclick="appendOperation('-')">-</button>
-            <button class="button" onclick="appendNumber('00')">00</button>
-            <button class="button" onclick="appendNumber(0)">0</button>
-            <button class="button" onclick="appendNumber('.')">.</button>
-            <button class="button equals" onclick="calculate()">=</button>
+            <button class="button" onclick="appendVal('&#40;')">&#40;</button>
+            <button class="button" onclick="appendVal('&#41;')">&#41;</button>
+            <button class="button" onclick="clearLast()">/</button>
+            <button class="button" onclick="appendVal(1)">1</button>
+            <button class="button" onclick="appendVal(2)">2</button>
+            <button class="button" onclick="appendVal(3)">3</button>
+            <button class="button" onclick="appendVal('*')">x</button>
+            <button class="button" onclick="appendVal(4)">4</button>
+            <button class="button" onclick="appendVal(5)">5</button>
+            <button class="button" onclick="appendVal(6)">6</button>
+            <button class="button" onclick="appendVal('+')">+</button>
+            <button class="button" onclick="appendVal(7)">7</button>
+            <button class="button" onclick="appendVal(8)">8</button>
+            <button class="button" onclick="appendVal(9)">9</button>
+            <button class="button" onclick="appendVal('-')">-</button>
+            <button class="button" onclick="appendVal('00')">00</button>
+            <button class="button" onclick="appendVal(0)">0</button>
+            <button class="button" onclick="appendVal('.')">.</button>
+            <button class="button equals" onclick="updateResult()">=</button>
         </div>
     </div>
 
-    <script src="./script.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

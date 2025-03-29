@@ -20,13 +20,25 @@ body{
 
 .display{
     width: 12.5rem;
-    padding: 1rem;
+    padding: 0.2rem 1rem;
     margin-bottom: 1rem;
     text-align: end;
     border-radius: 1rem;
     border: 1px solid rgb(190, 190, 190);
+    background-color: white;
 }
 
+.display > input {
+    border: 0;
+    text-align: end;
+    font-size: medium;
+}
+
+.result-display {
+    min-height: 1rem;
+    font-size: small;
+    color: rgb(190, 190, 190);
+}
 .claculator{
     display: grid;
     grid-template-columns: auto auto auto auto;
